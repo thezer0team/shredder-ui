@@ -6,7 +6,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 const localizer = momentLocalizer(moment);
 let testEvents = [
   {
-    title: "Fucking coding very long name",
+    title: "Coding very long name",
     start: new Date(new Date().setHours(new Date().getHours() - 3)),
     end: new Date(new Date().setHours(new Date().getHours() + 3)),
     allDay: true,
