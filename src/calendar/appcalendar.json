@@ -1,3 +1,27 @@
 {
-
+    "ID": "456513sd21f6s514",
+    "UserID": "ZeeshanCalId1546541",
+    "Name": "Zeeshan's Calendar",
+    "Description": "All My Events",
+    "Events": [{
+            "ID": "fsdafsadfdsaf14654621",
+            "Private": false,
+            "PlatformName": "Gmail",
+            "Creation": "2019-07-16T20:33:35.804Z",
+            "Title": "Coding very long name",
+            "Start": "2019-07-16T23:32:45.407Z",
+            "End": "2019-07-17T02:35:20.944Z",
+            "AllDay": true
+        },
+        {
+            "ID": "fsbjvcpoi123211f",
+            "Private": false,
+            "PlatformName": "Gmail",
+            "Creation": "2019-07-14T20:33:35.804Z",
+            "Title": "brainstorm on asset generation",
+            "Start": "2019-07-14T23:32:45.407Z",
+            "End": "2019-07-17T02:35:20.944Z",
+            "AllDay": false
+        }
+    ]
 }
