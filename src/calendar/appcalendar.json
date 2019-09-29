@@ -2,26 +2,60 @@
     "ID": "456513sd21f6s514",
     "UserID": "ZeeshanCalId1546541",
     "Name": "Zeeshan's Calendar",
-    "Description": "All My Events",
     "Events": [{
-            "ID": "fsdafsadfdsaf14654621",
-            "Private": false,
-            "PlatformName": "Gmail",
-            "Creation": "2019-07-16T20:33:35.804Z",
-            "Title": "Coding very long name",
-            "Start": "2019-07-16T23:32:45.407Z",
-            "End": "2019-07-17T02:35:20.944Z",
-            "AllDay": true
+        "ID": "fsdafsadfdsaf14654621",
+        "Private": false,
+        "CalendarID": "324u0joi3j2",
+        "Creation": "2019-07-16T20:33:35.804Z",
+        "Title": "Coding very long name",
+        "Start": "2019-08-16T23:32:45.407Z",
+        "End": "2019-08-17T02:35:20.944Z",
+        "AllDay": true
+    },
+    {
+        "ID": "fsbjvcpoi123211f",
+        "Private": false,
+        "CalendarID": "324u0joi3j2",
+        "Creation": "2019-07-14T20:33:35.804Z",
+        "Title": "figure out asset generation",
+        "Start": "2019-08-14T23:32:45.407Z",
+        "End": "2019-08-17T02:35:20.944Z",
+        "AllDay": false
+    }, 
+    {
+        "ID": "fsdafsadfdsaf14654621",
+        "Private": false,
+        "CalendarID": "fslk2342",
+        "Creation": "2019-07-16T20:33:35.804Z",
+        "Title": "do the launcry time",
+        "Start": "2019-08-16T23:32:45.407Z",
+        "End": "2019-08-17T02:35:20.944Z",
+        "AllDay": true
+    },
+    {
+        "ID": "fsbjvcpoi123211f",
+        "Private": false,
+        "calendarID": "fslk2342",
+        "Creation": "2019-07-14T20:33:35.804Z",
+        "Title": "time for me to get some stuff done",
+        "Start": "2019-08-14T23:32:45.407Z",
+        "End": "2019-08-17T02:35:20.944Z",
+        "AllDay": false
+    }
+    ],
+    "Calendars": [
+        {
+            "ID":"324u0joi3j2",
+            "Name":"Home life",
+            "Email": "dawood.zeeshan@gmail.com",
+            "Description":""
         },
         {
-            "ID": "fsbjvcpoi123211f",
-            "Private": false,
-            "PlatformName": "Gmail",
-            "Creation": "2019-07-14T20:33:35.804Z",
-            "Title": "brainstorm on asset generation",
-            "Start": "2019-07-14T23:32:45.407Z",
-            "End": "2019-07-17T02:35:20.944Z",
-            "AllDay": false
+            "ID":"fslk2342",
+            "Name":"Home life",
+            "Email":"zeeshans-work@gmail.com",
+            "Description":""
         }
     ]
+   
 }

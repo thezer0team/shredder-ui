@@ -8,27 +8,48 @@ class AppCalendar extends Component {
 
   constructor(props) {
     super(props);
-       this.state = {calendars : null};
+       this.state = {calendar : null};
+  }
+
+  handleSelect = (event) => {
+    debugger;
+    console.log(event);
+    // map to the event that we have-  
+   
+    const title = window.prompt('New Event name')
+    event.title = title;
+    CalendarService.CreateEvent(event).then( createdEvent =>{ 
+      this.setState({
+        Events: [
+          ...this.state.Events,
+          createdEvent,
+        ],
+      })
+    })
+
   }
 
   componentDidMount(){
-    console.log("what is state", this.state.calendars);
-    return CalendarService.GetCalendarList().then( calendars =>  this.setState({calendars: calendars }));
+    console.log("what is state", this.state.calendar);
+    return CalendarService.GetCalendarList().then( calendar =>  this.setState({Events: calendar.Events, CalendarSources: calendar.Calendars, CalendarInfo: { ID: calendar.ID, UserID: calendar.UserID, Name: calendar.Name}  }));
   }
   
   render() {
-    if(this.state.calendars){
+    if(this.state.Events){
       return (
         <div style={{ height: "80vh" }}>
           <h1>Calendar goes here</h1>
           <Calendar
+            selectable
             localizer={localizer}
-            events={ this.state.calendars[0].Events}
+            events={ this.state.Events}
             toolbar={true}
             popup={true}
             popupOffset={100}
             startAccessor="start"
             endAccessor="end"
+            onSelectEvent={ event => alert(event.title)}
+            onSelectSlot={this.handleSelect}
           />
         </div>
       );
