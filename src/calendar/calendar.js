@@ -3,26 +3,77 @@ import React, { Component } from "react";
 import moment from "moment";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import CalendarService from "./calendar-service";
-import {Modal, Popover, Input} from 'antd';
+import {Modal, Popover, Input, Button} from 'antd';
+import {reject} from 'lodash';
 const localizer = momentLocalizer(moment);
 
-const PopOverContent = (
-  <div style={{width: '250px'}}>
-      <p> Edit</p>
-      
-  </div>
-)
 
 
+function Event  ({event }){
 
-function  Event({event}) {
-  return (
-    <Popover content={PopOverContent} title={event.title} placement="left" trigger="click"> 
-      <div style={{height:'100%'}}>
-        <span>{event.title} </span> 
-      </div>
-    </Popover>
+  console.log("here is event",event, "heere is remove", )
+ 
+ return (
+   <Popover placement="left" title={event.title} trigger="click"> 
+          <div style={{height:'100%'}}>
+            <span>{event.title} </span> 
+          </div>
+      </Popover>
   )
+}
+// content={PopOverContent} 
+
+// class CustomEvent extends Component{
+//   constructor(props) {
+//     super(props);
+//        this.state = {event : props.event , remove:props.remove, modalEditState: false, confirmLoading:false, SelectedSlotEvent:{title:null}, SelectedEditEvent:{title:null}};
+//   }
+//       render(){
+//         if(this.state.event){
+//           console.log("here is event",this.state.event, "heere is remove", this.state.remove)
+//           return( <Popover placement="left" trigger="click"> 
+//               <div style={{height:'100%'}}>
+//               <span>{this.state.event.title} </span> 
+//               </div>
+//           </Popover>)
+//         }
+
+//       }
+
+// }
+
+// remove={remove}
+// const PopOverContent = (props)=>(
+ 
+
+// )
+// const CustomEventContainer = ({remove}) => props => {
+//     return (
+//       <Popover content={PopOverContent} title={props.event.title}  placement="left" trigger="click"> 
+//         <CustomEvent event={props} remove={remove} />
+//         </Popover>
+       
+   
+//     )
+// }
+// content={PopOverContent}  
+
+class CustomEvent extends Component{
+    render() {
+      const { event, remove} = this.props
+      let PopoverContent =  (<div style={{width: '250px'}}>
+      <Button type="danger" shape="circle" icon="delete" size='default' onClick={remove}   /> 
+      <h1>heelloo</h1>
+  </div>)
+      return(
+        <Popover content={PopoverContent}   title={event.title}  placement="left"> 
+          <div style={{height:'100%'}}>
+            <span>{event.title} </span>
+          </div>
+         </Popover>
+      )
+
+   } 
 }
 
 class AppCalendar extends Component {
@@ -77,7 +128,7 @@ class AppCalendar extends Component {
   
         });
       });
-    }, 2000)
+    }, 500)
   };
 
   handleCancel = e => {
@@ -89,17 +140,19 @@ class AppCalendar extends Component {
 
 //**** Handle EDIT Event Modal *//////////////////////////
 handleSelectedEvent = (event) => {
-  debugger;
     this.setState({
       SelectedEditEvent: event
     })
-    this.showEditModal(event)
   } 
   
-  showEditModal = () => {
+  handleDeleteEvent = () =>{
+    console.log("b4", this.state.Events);
+    let updatedEvents = reject(this.state.Events, (ev) => ev.title === this.state.SelectedEditEvent.title )
+    console.log("new events", updatedEvents);
     this.setState({
-      modalEditState: true,
+      Events: updatedEvents
     })
+
   }
 
   handleEditOk = (e) => {
@@ -138,21 +191,16 @@ handleSelectedEvent = (event) => {
               <Input value={this.state.SelectedSlotEvent.title} onChange={this.handleNameChange} placeholder="Event Title" />
           </Modal>
          
-          <Modal
-            title="Edit an Event"
-            visible={this.state.modalEditState}
-            onOk={this.handleEditOk}
-            confirmLoading={confirmLoading}
-            onCancel={this.handleCancel}>
-              {this.state.SelectedEditEvent.title}
-          </Modal>
-         
-
           <Calendar
             selectable
-            components={{
-              event:Event
-            }}
+            components={
+              {
+                // event:Event
+                // event: CustomEventContainer({remove: this.handleDeleteEvent})
+                event: props=>(<CustomEvent {...props} remove= {this.handleDeleteEvent}/>) 
+
+            }
+          }
             localizer={localizer}
             events={ this.state.Events}
             toolbar={true}
@@ -160,11 +208,9 @@ handleSelectedEvent = (event) => {
             popupOffset={100}
             startAccessor="start"
             endAccessor="end"
-            // onSelectEvent={this.handleSelectedEvent}
+            onSelectEvent={this.handleSelectedEvent}
             onSelectSlot={this.handleSelectSlot}
           >
-           <Popover placement="left" trigger="click">
-           </Popover>
           </Calendar>
          
 
